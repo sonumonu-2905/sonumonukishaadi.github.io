@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BRIDE ♥ GROOM | Wedding</title>
+  <meta name="description" content="Wedding website for BRIDE & GROOM — celebrating Karnataka × West Bengal." />
+
+  <!-- Free Google Fonts (optional). You can change these later. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #fffaf3;          /* ivory */
+      --ink: #1e1b16;
+      --muted: #6b5f55;
+      --maroon:#7a1f2b;
+      --gold:#c7a24b;
+      --indigo:#1f2a6b;
+      --card:#ffffffcc;
+      --ring: rgba(199,162,75,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --radius: 18px;
+      --max: 1040px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 12px 12px, rgba(122,31,43,.06) 2px, transparent 2.4px) 0 0/28px 28px,
+        radial-gradient(circle at 18px 18px, rgba(31,42,107,.04) 2px, transparent 2.4px) 0 0/34px 34px,
+        var(--bg);
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:22px; }
+
+    /* Top bar */
+    .top{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(255,250,243,.75);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:600;
+      letter-spacing:.3px;
+    }
+    .monogram{
+      width:34px; height:34px; border-radius:12px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg, rgba(122,31,43,.12), rgba(31,42,107,.10));
+      border:1px solid rgba(0,0,0,.06);
+    }
+    .links{
+      display:flex; flex-wrap:wrap; gap:10px;
+      font-size:14px; color:var(--muted);
+    }
+    .links a{ padding:8px 10px; border-radius:12px; }
+    .links a:hover{ background: rgba(0,0,0,.04); color:var(--ink); }
+
+    /* Hero */
+    .hero{
+      padding:38px 0 10px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .hero{ grid-template-columns:1fr; }
+    }
+    .heroCard{
+      border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.68));
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow: var(--shadow);
+      padding:28px;
+      position:relative;
+      overflow:hidden;
+    }
+    .heroCard:before{
+      content:"";
+      position:absolute; inset:-80px -60px auto auto;
+      width:220px; height:220px;
+      background: radial-gradient(circle, rgba(199,162,75,.40), transparent 60%);
+      transform: rotate(20deg);
+      pointer-events:none;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:13px; color:var(--muted);
+      background: rgba(199,162,75,.12);
+      border:1px solid rgba(199,162,75,.25);
+      padding:8px 12px; border-radius:999px;
+    }
+    h1{
+      margin:14px 0 10px;
+      font-family: "Playfair Display", serif;
+      font-size:44px;
+      line-height:1.05;
+      letter-spacing:.2px;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
+      max-width:60ch;
+    }
+    .ctaRow{
+      margin-top:18px;
+      display:flex; flex-wrap:wrap; gap:12px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(0,0,0,.08);
+      background: white;
+      box-shadow: 0 6px 18px rgba(0,0,0,.06);
+      font-weight:600;
+      font-size:14px;
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(122,31,43,.95), rgba(31,42,107,.92));
+      color:#fff;
+      border-color: rgba(0,0,0,.0);
+    }
+    .btn:hover{ transform: translateY(-1px); }
+
+    /* Photo card */
+    .photoCard{
+      border-radius:var(--radius);
+      background: rgba(255,255,255,.65);
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+    .photo{
+      aspect-ratio: 16/11;
+      background:
+        linear-gradient(135deg, rgba(122,31,43,.20), rgba(199,162,75,.18), rgba(31,42,107,.16)),
+        url("YOUR_PHOTO_URL_HERE") center/cover no-repeat;
+      position:relative;
+    }
+    .photo:after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(to top, rgba(30,27,22,.55), transparent 55%);
+    }
+    .photoLabel{
+      position:absolute; left:18px; bottom:16px; right:18px;
+      color:#fff;
+      z-index:2;
+    }
+    .photoLabel b{ font-size:16px; }
+    .photoLabel div{ opacity:.9; font-size:13px; margin-top:3px; }
+
+    .mini{
+      padding:16px 18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .pill{
+      border-radius:14px;
+      background: rgba(255,255,255,.70);
+      border:1px solid rgba(0,0,0,.06);
+      padding:12px;
+    }
+    .pill .t{ font-size:12px; color:var(--muted); }
+    .pill .v{ font-weight:600; margin-top:4px; }
+
+    /* Sections */
+    section{ padding:18px 0; }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+    .card{
+      grid-column: span 12;
+      background: var(--card);
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+      padding:20px;
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-family:"Playfair Display", serif;
+      font-size:26px;
+    }
+    .muted{ color:var(--muted); line-height:1.7; }
+
+    .twoCol .card{ grid-column: span 6; }
+    @media (max-width: 900px){
+      .twoCol .card{ grid-column: span 12; }
+    }
+
+    .event{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(0,0,0,.06);
+      background: rgba(255,255,255,.65);
+      margin-top:10px;
+    }
+    .dot{
+      width:12px; height:12px; border-radius:999px;
+      margin-top:6px;
+      background: var(--gold);
+      box-shadow: 0 0 0 6px var(--ring);
+      flex:0 0 auto;
+    }
+    .tag{
+      display:inline-flex;
+      gap:8px; align-items:center;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.08);
+      color: var(--muted);
+      background: rgba(255,255,255,.65);
+      margin-top:8px;
+    }
+
+    .footer{
+      padding:26px 0 40px;
+      color: var(--muted);
+      text-align:center;
+      font-size:13px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top">
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="monogram">B♥G</div>
+        <div>BRIDE × GROOM</div>
+      </div>
+      <div class="links">
+        <a href="#story">Our story</a>
+        <a href="#events">Events</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#travel">Travel</a>
+        <a href="#rsvp">RSVP</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap hero">
+    <div class="heroCard">
+      <div class="kicker">Karnataka × West Bengal • A celebration of two cultures</div>
+      <h1>BRIDE &amp; GROOM</h1>
+      <p class="sub">
+        Join us as we blend <b>South Indian warmth</b> with <b>Bengali tradition</b> —
+        a modern celebration rooted in culture.
+      </p>
+
+      <div class="ctaRow">
+        <a class="btn primary" href="#rsvp">RSVP</a>
+        <a class="btn" href="#events">View events</a>
+        <a class="btn" href="#travel">Travel & stay</a>
+      </div>
+
+      <div class="tag">📅 DATE: DD Month YYYY • 📍 CITY</div>
+    </div>
+
+    <div class="photoCard">
+      <div class="photo">
+        <div class="photoLabel">
+          <b>Save the Date</b>
+          <div>DD Month YYYY • Venue name</div>
+        </div>
+      </div>
+      <div class="mini">
+        <div class="pill">
+          <div class="t">Ceremonies</div>
+          <div class="v">Kannada + Bengali</div>
+        </div>
+        <div class="pill">
+          <div class="t">Dress vibe</div>
+          <div class="v">Traditional / Festive</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section id="story" class="grid">
+      <div class="card">
+        <h2>Our story</h2>
+        <p class="muted">
+          (Write 4–6 lines about how you met, what you love about each other, and what you’re excited for.)
+        </p>
+      </div>
+    </section>
+
+    <section id="events" class="grid twoCol">
+      <div class="card">
+        <h2>Events — Karnataka side</h2>
+        <p class="muted">Add your ceremonies here (examples: Haldi, Mehendi, Nandi, Reception).</p>
+
+        <div class="event">
+          <div class="dot"></div>
+          <div>
+            <b>Mehendi</b><br/>
+            <span class="muted">Time • Venue • Address</span>
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="dot" style="background:var(--maroon)"></div>
+          <div>
+            <b>Wedding / Muhurtham</b><br/>
+            <span class="muted">Time • Venue • Address</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Events — Bengali side</h2>
+        <p class="muted">Add your ceremonies here (examples: Aiburobhat, Gaye Holud, Bor Jatri, Bou Bhaat).</p>
+
+        <div class="event">
+          <div class="dot" style="background:var(--indigo)"></div>
+          <div>
+            <b>Gaye Holud</b><br/>
+            <span class="muted">Time • Venue • Address</span>
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="dot"></div>
+          <div>
+            <b>Reception</b><br/>
+            <span class="muted">Time • Venue • Address</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="schedule" class="grid">
+      <div class="card">
+        <h2>Schedule</h2>
+        <p class="muted">Tip: keep this simple and mobile-friendly.</p>
+
+        <div class="event">
+          <div class="dot"></div>
+          <div>
+            <b>Day 1</b><br/>
+            <span class="muted">10:00 AM – Welcome • 12:00 PM – Lunch • 6:00 PM – Evening event</span>
+          </div>
+        </div>
+
+        <div class="event">
+          <div class="dot" style="background:var(--maroon)"></div>
+          <div>
+            <b>Day 2</b><br/>
+            <span class="muted">9:00 AM – Ceremony • 1:00 PM – Lunch • 7:00 PM – Reception</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="travel" class="grid twoCol">
+      <div class="card">
+        <h2>Travel</h2>
+        <p class="muted">
+          Add nearest airport/railway station + approximate travel time.
+          You can also add buttons to open Google Maps for venue.
+        </p>
+        <div class="ctaRow">
+          <a class="btn" href="GOOGLE_MAPS_VENUE_LINK" target="_blank" rel="noreferrer">Open venue map</a>
+          <a class="btn" href="GOOGLE_MAPS_HOTEL_LINK" target="_blank" rel="noreferrer">Open hotel map</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Dress code</h2>
+        <p class="muted">
+          Example:
+          <br/>• Karnataka ceremonies: silk / festive Indian
+          <br/>• Bengali ceremonies: traditional / festive
+          <br/>• Reception: cocktail / ethnic glam
+        </p>
+      </div>
+    </section>
+
+    <section id="rsvp" class="grid">
+      <div class="card">
+        <h2>RSVP</h2>
+        <p class="muted">
+          Easiest free RSVP: create a Google Form and paste its embed iframe below.
+          (Or simply add the Google Form link as a button.)
+        </p>
+
+        <!-- Replace the iframe src with your Google Form embed link -->
+        <div style="border-radius:16px; overflow:hidden; border:1px solid rgba(0,0,0,.08); background:#fff;">
+          <iframe
+            src="PASTE_YOUR_GOOGLE_FORM_EMBED_LINK_HERE"
+            width="100%"
+            height="900"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0"
+            title="RSVP Form">
+            Loading…
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Made with love • BRIDE × GROOM • © YYYY
+    </div>
+  </div>
+</body>
+</html>
